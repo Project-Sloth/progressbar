@@ -45,7 +45,6 @@ If you dont have Cancelled callback, it will throw error in core. So just use th
 https://fontawesome.com/icons
 ```lua
 RegisterNetEvent('consumables:client:Eat', function(itemName)
-    print('[consumables] Client:Eat', itemName)
     TriggerEvent('animations:client:EmoteCommandStart', {"eat"})
     QBCore.Functions.Progressbar("eat_something", "Eating..", 5000, false, true, {
         disableMovement = false,
