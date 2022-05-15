@@ -41,8 +41,8 @@ end
 2. Delete the old progressbar and add the new one in standalone folder
 
 3. If you want custom icons with the progressbar, just add the font-awesome icon like the one in example.
-If you dont have Cancelled callback, it will throw error in core. So just use this as an example while adding icons to progressbar
-
+If you dont have Cancelled callback, it will throw error in core. So just use this as an example while adding icons to progressbar. The following script supports fontAwesome 6 icons. Look for them here - 
+https://fontawesome.com/icons
 ```lua
 RegisterNetEvent('consumables:client:Eat', function(itemName)
     print('[consumables] Client:Eat', itemName)
