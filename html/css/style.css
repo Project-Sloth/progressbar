@@ -17,7 +17,8 @@ body {
 .container {
     display: block;
     position: relative;
-    top: 50vh;
+    top: 48vh;
+    left:15vh;
     width: auto;
     opacity: 0;
 }
@@ -50,10 +51,10 @@ body {
     right: 0;
     margin: 0 auto;
     text-align: center;
-    font-weight: bold;
     font-size: 3vh;
     border-radius: 15vh;
     text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1), 1px 1px 1px rgba(0,0,0,.5);
+
 }
 
 .label {
@@ -65,9 +66,12 @@ body {
     right: 0;
     margin: 0 auto;
     text-align: center;
-    top: 9.5vh;
-    font-weight: bold;
-    font-size: 2vh;
+    font-weight: 600;
+    top: -1vh;
+    font-size: 1.5vh;
     border-radius: 15vh;
     text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1), 1px 1px 1px rgba(0,0,0,.5);
+
+    text-transform: uppercase;
+    
 }
