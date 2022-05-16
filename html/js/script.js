@@ -19,9 +19,9 @@ let H = canvas.height;
 let degrees = 0;
 let new_degrees = 0;
 let time = 0;
-let color = "#12f2eb";
+let color = "#1dcc9d";
 // // let color = "#eb5757";
-let bgcolor = "rgba(0, 0, 0, 0.35)";
+let bgcolor = "rgba(255, 255, 255, 0.35)";
 let bgcolor2 = "#f63737";
 let animation_loop;
 let animation_loop_full;
@@ -49,19 +49,19 @@ function init() {
     let radians = degrees * Math.PI / 180;
     ctx.beginPath();
     ctx.strokeStyle = color;
-    ctx.lineCap = 'round';
-    ctx.lineWidth = 25;
+    // ctx.lineCap = 'round';
+    ctx.lineWidth = 28.5;
     ctx.arc(W / 2, H / 2, 100, 0 - 90 * Math.PI / 180, radians - 90 * Math.PI / 180, false);
     ctx.stroke();
 }
 
 let addition = 0
 function draw(data) {
-    color = "#12f2eb";   
+    color = "#2265a3";   
     ctx.clearRect(0,0,W,H);
     addition = 0;
     degrees = 0;
-    $(".label").css("color", color);
+    $(".label").css("color", "white");
     if (typeof cancel_timeout !== undefined) clearTimeout(cancel_timeout);
     $(".icon").html(`<i class=\"fa-solid fa-bars-progress\" style=\"color:${color}\"></i>`);
     if (typeof animation_loop !== undefined) clearInterval(animation_loop);
@@ -69,7 +69,7 @@ function draw(data) {
     $(".label").text(data.label);
     $(".container").css("opacity", "0");
     if (data.icon !== null && data.icon !== undefined) {
-        $(".icon").html(`<i style=\"color:${color}\" class=\"${data.icon}\"></i>`);
+        $(".icon").html(`<i style=\"color:white\" class=\"${data.icon}\"></i>`);
     }
     $( ".container" ).animate({
         opacity: 1,
