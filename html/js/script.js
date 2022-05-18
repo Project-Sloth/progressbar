@@ -69,11 +69,7 @@ function draw(data) {
     $(".label").text(data.label);
     $(".container").css("opacity", "0");
     if (data.icon !== null && data.icon !== undefined) { // Trying to use inv image that isn't there, no icon will show
-        $(".icon").html(`<i style=\"color:${color}\" class=\"${data.icon}\">
-						 <img src=${data.icon} width=35px onerror="this.onerror=null; this.remove();"
-						 style="filter: drop-shadow(-1px -1px 10px black);">
-						 </i>`
-						);
+        $(".icon").html(`<i style=\"color:${color}\" class=\"${data.icon}\"> <img src=${data.icon} onerror="this.onerror=null; this.remove();"> </i>`);
     }
     $( ".container" ).animate({
         opacity: 1,
