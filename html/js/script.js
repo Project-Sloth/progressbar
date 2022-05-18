@@ -119,6 +119,5 @@ function cancel() {
 
 function animate_to_full() {
     init();
-    print(addition)
     // degrees+=addition;
 }
