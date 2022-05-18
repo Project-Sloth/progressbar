@@ -10,6 +10,8 @@ local Keys = {
     ["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
 }
 
+local QBCore = exports["qb-core"]:GetCoreObject()
+
 local Action = {
     name = "",
     duration = 0,
@@ -77,7 +79,17 @@ end
 function Process(action, start, tick, finish)
 	ActionStart()
     Action = action
-
+	if Action.icon then
+		if QBCore.Shared.Items[tostring(Action.icon)] then
+			local img = "nui://qb-inventory/html/" -- default qb-core inventory link
+			if not string.find(QBCore.Shared.Items[tostring(Action.icon)].image, "http") then -- 👀 Slipped in support for custom html links too
+				if not string.find(QBCore.Shared.Items[tostring(Action.icon)].image, "images/") then --search for if the icon images have /images in the listing
+					img = img.."images/"
+				end
+				Action.icon = img..QBCore.Shared.Items[tostring(Action.icon)].image
+			end
+		end
+	end
     if not IsEntityDead(PlayerPedId()) or Action.useWhileDead then
         if not isDoingAction then
             isDoingAction = true
@@ -91,7 +103,6 @@ function Process(action, start, tick, finish)
                 label = Action.label,
                 icon = Action.icon
             })
-
             Citizen.CreateThread(function ()
                 if start ~= nil then
                     start()
