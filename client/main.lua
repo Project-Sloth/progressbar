@@ -10,8 +10,6 @@ local Keys = {
     ["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
 }
 
-local QBCore = exports["qb-core"]:GetCoreObject()
-
 local Action = {
     name = "",
     duration = 0,
@@ -116,10 +114,10 @@ function Process(action, start, tick, finish)
                 end
             end)
         else
-            QBCore.Functions.Notify("You are already doing something!", "error")
+            TriggerEvent("QBCore:Notify", "You are already doing something!", "error")
         end
     else
-        QBCore.Functions.Notify("Cant do that action!", "error")
+        TriggerEvent("QBCore:Notify", "Cant do that action!", "error")
     end
 end
 
