@@ -100,7 +100,7 @@ function animate_to() {
 function cancel() {
     color = bgcolor2;
     clearInterval(animation_loop);
-    addition = (new_degrees - degrees) / 50;
+    // addition = (new_degrees - degrees) / 50;
     animation_loop_full = setInterval(animate_to_full, 1);
     $(".label").text("CANCELLED!");
     $(".label").css("color", bgcolor2);
@@ -119,5 +119,6 @@ function cancel() {
 
 function animate_to_full() {
     init();
-    degrees+=addition;
+    print(addition)
+    // degrees+=addition;
 }
