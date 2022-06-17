@@ -134,6 +134,8 @@ end
 
 function ActionStart()
     runProgThread = true
+    LocalPlayer.state:set("inv_busy", true, true) -- Busy
+
     Citizen.CreateThread(function()
         while runProgThread do
             if isDoingAction then
@@ -233,7 +235,8 @@ function Cancel()
     TriggerEvent('progressbar:setstatus', false)
     isDoingAction = false
     wasCancelled = true
-
+	
+    LocalPlayer.state:set("inv_busy", false, true) -- Not Busy
     ActionCleanup()
 
     SendNUIMessage({
@@ -245,6 +248,7 @@ function Finish()
     TriggerEvent('progressbar:setstatus', false)
     isDoingAction = false
     ActionCleanup()
+    LocalPlayer.state:set("inv_busy", false, true) -- Not Busy
 end
 
 function ActionCleanup()
