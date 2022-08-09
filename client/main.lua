@@ -1,10 +1,10 @@
 local Keys = {
-    ["ESC"] = 322, ["F1"] = 288, ["F2"] = 289, ["F3"] = 170, ["F5"] = 166, ["F6"] = 167, ["F7"] = 168, ["F8"] = 169, ["F9"] = 56, ["F10"] = 57, 
-    ["~"] = 243, ["1"] = 157, ["2"] = 158, ["3"] = 160, ["4"] = 164, ["5"] = 165, ["6"] = 159, ["7"] = 161, ["8"] = 162, ["9"] = 163, ["-"] = 84, ["="] = 83, ["BACKSPACE"] = 177, 
+    ["ESC"] = 322, ["F1"] = 288, ["F2"] = 289, ["F3"] = 170, ["F5"] = 166, ["F6"] = 167, ["F7"] = 168, ["F8"] = 169, ["F9"] = 56, ["F10"] = 57,
+    ["~"] = 243, ["1"] = 157, ["2"] = 158, ["3"] = 160, ["4"] = 164, ["5"] = 165, ["6"] = 159, ["7"] = 161, ["8"] = 162, ["9"] = 163, ["-"] = 84, ["="] = 83, ["BACKSPACE"] = 177,
     ["TAB"] = 37, ["Q"] = 44, ["W"] = 32, ["E"] = 38, ["R"] = 45, ["T"] = 245, ["Y"] = 246, ["U"] = 303, ["P"] = 199, ["["] = 39, ["]"] = 40, ["ENTER"] = 18,
     ["CAPS"] = 137, ["A"] = 34, ["S"] = 8, ["D"] = 9, ["F"] = 23, ["G"] = 47, ["H"] = 74, ["K"] = 311, ["L"] = 182,
     ["LEFTSHIFT"] = 21, ["Z"] = 20, ["X"] = 73, ["C"] = 26, ["V"] = 0, ["B"] = 29, ["N"] = 249, ["M"] = 244, [","] = 82, ["."] = 81,
-    ["LEFTCTRL"] = 36, ["LEFTALT"] = 19, ["SPACE"] = 22, ["RIGHTCTRL"] = 70, 
+    ["LEFTCTRL"] = 36, ["LEFTALT"] = 19, ["SPACE"] = 22, ["RIGHTCTRL"] = 70,
     ["HOME"] = 213, ["PAGEUP"] = 10, ["PAGEDOWN"] = 11, ["DELETE"] = 178,
     ["LEFT"] = 174, ["RIGHT"] = 175, ["TOP"] = 27, ["DOWN"] = 173,
     ["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
@@ -81,7 +81,7 @@ function Process(action, start, tick, finish)
     Action = action
 	if Action.icon then
 		if QBCore.Shared.Items[tostring(Action.icon)] then
-			local img = "nui://qb-inventory/html/" -- default qb-core inventory link
+			local img = "nui://"..Config.img -- default qb-core inventory link
 			if not string.find(QBCore.Shared.Items[tostring(Action.icon)].image, "http") then -- 👀 Slipped in support for custom html links too
 				if not string.find(QBCore.Shared.Items[tostring(Action.icon)].image, "images/") then --search for if the icon images have /images in the listing
 					img = img.."images/"
@@ -125,10 +125,10 @@ function Process(action, start, tick, finish)
                 end
             end)
         else
-            TriggerEvent("QBCore:Notify", "You are already doing something!", "error")
+            TriggerEvent("QBCore:Notify", Lang:t("error.busy"), "error")
         end
     else
-        TriggerEvent("QBCore:Notify", "Cant do that action!", "error")
+        TriggerEvent("QBCore:Notify", Lang:t("error.cantdo"), "error")
     end
 end
 
@@ -151,7 +151,7 @@ function ActionStart()
                             local player = PlayerPedId()
                             if (DoesEntityExist(player) and not IsEntityDead(player)) then
                                 loadAnimDict( Action.animation.animDict)
-                                TaskPlayAnim(player, Action.animation.animDict, Action.animation.anim, 3.0, 3.0, -1, Action.animation.flags, 0, 0, 0, 0 )     
+                                TaskPlayAnim(player, Action.animation.animDict, Action.animation.anim, 3.0, 3.0, -1, Action.animation.flags, 0, 0, 0, 0 )
                             end
                         else
                             --TaskStartScenarioInPlace(PlayerPedId(), 'PROP_HUMAN_BUM_BIN', 0, true)
@@ -190,7 +190,7 @@ function ActionStart()
                     prop_net = netid
 
                     isProp = true
-                    
+
                     if not isPropTwo and Action.propTwo ~= nil and Action.propTwo.model ~= nil then
                         RequestModel(Action.propTwo.model)
 
@@ -235,7 +235,7 @@ function Cancel()
     TriggerEvent('progressbar:setstatus', false)
     isDoingAction = false
     wasCancelled = true
-	
+
     LocalPlayer.state:set("inv_busy", false, true) -- Not Busy
     ActionCleanup()
 
